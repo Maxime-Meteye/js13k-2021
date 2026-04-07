@@ -12,7 +12,9 @@ jobs:
           node-version: 24
       - run:  npm install
       - run: npm run lint > lint.log
-      - run: curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"Linter found problems"}'
+      - run: | 
+        curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"Linter found problems"}'
         if: failure()
-      - run: curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"Linter found no problems"}'
+      - run: |
+        curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"Linter found no problems"}'
         if: success()
