@@ -6,7 +6,7 @@ on:
 jobs:
   lint:
     runs-on:  ubuntu-latest
-    steps :
+    steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v6
         with:
@@ -15,5 +15,5 @@ jobs:
       - run: npm lint > lint.log
       - run: curl -X POST ${{secrets.DISCORD_GITHUB}} -H "Content-Type: application/json" -d '{"content":"Linter found problems"}'
         if: failure()
-      - run: curl -X POST ${{secrets.DISCORD_GITHUB}} -H "Content-Type: application/json" -d '{"content":"Linter didn't found problems"}'
+      - run: curl -X POST ${{secrets.DISCORD_GITHUB}} -H "Content-Type: application/json" -d '{"content":"Linter didn\'t found problems"}'
         if: success()
