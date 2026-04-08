@@ -46,5 +46,5 @@ jobs:
           curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test found errors"}'
         if: failure()
       - run: |
-          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test unsuccessful"}'
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test successful"}'
         if: success()
