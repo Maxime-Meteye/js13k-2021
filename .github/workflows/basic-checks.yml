@@ -1,0 +1,50 @@
+name: "Lint"
+on:
+  push:
+  pull_request:
+jobs:
+  lint:
+    runs-on:  ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run:  npm install
+      - run: npm run lint
+      - run: | 
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Linter found problems"}'
+        if: failure()
+      - run: |
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Linter found no problems"}'
+        if: success()
+  audit :
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm install
+      - run: npm audit
+      - run: |
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Audit found vulnerabilities"}'
+        if: failure()
+      - run: |
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Audit found 0 vulnerabilities"}'
+        if: success()
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm install
+      - run: npm vitest
+      - run: |
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test found errors"}'
+        if: failure()
+      - run: |
+          curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test unsuccessful"}'
+        if: success()
