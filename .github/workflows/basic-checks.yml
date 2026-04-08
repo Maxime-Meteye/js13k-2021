@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 24
       - run: npm install
-      - run: npm vitest
+      - run: npx vitest
       - run: |
           curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test found errors"}'
         if: failure()
