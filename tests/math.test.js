@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest'
 import { randFloatSpread, mapLinear, lerp, randFloat } from '../src/math.js';
-import { remove, sample } from '../src/utils.js';
 
 
 
