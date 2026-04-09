@@ -3,7 +3,7 @@ import { playEnemyDeath, playShoot } from './audio.js';
 import { boxGeom_create } from './boxGeom.js';
 import { nx_ny, ny } from './boxIndices.js';
 import { align } from './boxTransforms.js';
-import { DEBUG, gravity } from './constants.js';
+import { DEBUG, gravity, TESTING } from './constants.js';
 import { light_create } from './directionalLight.js';
 import { lightShadow_updateMatrices } from './directionalLightShadow.js';
 import { component_create, entity_add } from './entity.js';
@@ -124,7 +124,10 @@ export var map0 = (gl, scene, camera) => {
   player.scene = map;
 
   var health = 100;
+  document.health = health;
+
   var score = 0;
+  document.score = score;
 
   var updateShadowCamera = () => {
     var offset = 512;
@@ -369,13 +372,18 @@ export var map0 = (gl, scene, camera) => {
 
   var takeDamage = (damage = 2) => {
     health -= damage;
+    if(TESTING){
+      document.health = health;
+    }
+    
     if (health <= 0) {
       document.exitPointerLock();
       document.querySelector('.e').hidden = false;
     }
   };
+  document.takeDamage = takeDamage;
 
-  var createPhantomEnemy = () => {
+    var createPhantomEnemy = () => {
     var PHANTOM_STATE_NONE = 0;
     var PHANTOM_STATE_IDLE = 1;
     var PHANTOM_STATE_ALERT = 2;

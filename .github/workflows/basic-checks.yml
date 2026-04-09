@@ -48,3 +48,12 @@ jobs:
       - run: |
           curl -X POST ${{ secrets.DISCORD_GITHUB }} -H "Content-Type: application/json" -d '{"content":"For @${{ github.actor }} : Unit test successful"}'
         if: success()
+  func-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm install
+      - 

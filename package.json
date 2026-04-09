@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "func-test": "playwright test tests/functionnalTests/functionnality.test.js"
   },
   "keywords": [],
   "author": "",
@@ -13,9 +13,15 @@
   "packageManager": "pnpm@10.22.0",
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.59.1",
+    "@types/node": "25.5.2",
     "eslint": "10.2.0",
     "globals": "17.4.0",
     "vite": "8.0.7",
     "vitest": "4.1.3"
+  },
+  "dependencies": {
+    "playwright": "1.59.1",
+    "test@latest": "link:playwright/test@latest"
   }
 }
