@@ -43,8 +43,6 @@ test("Scripts are loaded",async ({page})=>{
 
 test("Player can take damages", async({page})=>{
     await page.goto("http://localhost:3000/");
-    let healthBeforeDamage;
-    console.log("before eval");
     const health_diff = await page.evaluate(()=>
         new Promise((resolve) => {
             let before = document.health;

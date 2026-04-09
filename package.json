@@ -21,7 +21,6 @@
     "vitest": "4.1.3"
   },
   "dependencies": {
-    "playwright": "1.59.1",
-    "test@latest": "link:playwright/test@latest"
+    "playwright": "1.59.1"
   }
 }
