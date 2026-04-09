@@ -56,4 +56,6 @@ jobs:
         with:
           node-version: 24
       - run: npm install
-      - 
+      - run: npx playwright install --with-deps chromium
+      - run: npx serve . &
+      - run: npm run func-test
