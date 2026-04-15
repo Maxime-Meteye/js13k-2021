@@ -2,6 +2,7 @@
 
 import { bufferGeom_fromGeom } from './bufferGeom.js';
 import { camera_create, camera_updateProjectionMatrix } from './camera.js';
+import { TESTING } from './constants.js';
 import { controls_create } from './controls.js';
 import { lightShadow_updateMatrices } from './directionalLightShadow.js';
 import { entity_update } from './entity.js';
@@ -327,3 +328,9 @@ addEventListener('click', () => {
     animate();
   }
 });
+
+// TESTING 
+//Fires event when script is fully loaded
+if(TESTING){
+  document.loaded = true;
+}

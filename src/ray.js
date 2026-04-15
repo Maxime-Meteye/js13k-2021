@@ -102,7 +102,7 @@ export var ray_intersectTriangle = (ray, a, b, c, target) => {
   //   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
   //   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
   var DdN = vec3_dot(ray.direction, _normal);
-  var sign = 1;
+  var sign;
 
   if (DdN > 0) {
     return;
