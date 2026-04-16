@@ -1,0 +1,16 @@
+name: "Audit"
+on:
+  push:
+  pull_request:
+jobs:
+  audit :
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.1
+      - run: npm install
+      - run: npm audit
+      - run: echo "::error Failed audit consider updating old dependencies and removing compromised dependencies"
+        if: failure()  
