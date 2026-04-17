@@ -2,6 +2,7 @@ name: "Functionnal tests"
 on:
   push:
   pull_request:
+  workflow_dispatch:
 jobs:
   func-test:
     runs-on: ubuntu-latest
